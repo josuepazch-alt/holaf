@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Una pregunta importante ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9aaf, #c084fc);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .contenedor {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 35px 20px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 35px #0003;
+            animation: aparecer 0.6s ease;
+        }
+
+        h1 {
+            font-size: clamp(25px, 7vw, 34px);
+            color: #a33391;
+            margin-bottom: 30px;
+        }
+
+        .emoji {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        button {
+            width: 115px;
+            height: 55px;
+            border: none;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            touch-action: manipulation;
+            box-shadow: 0 5px 12px #0002;
+        }
+
+        #si {
+            background: #36c66b;
+        }
+
+        #no {
+            background: #ff4d5e;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #resultado {
+            display: none;
+        }
+
+        #resultado h1 {
+            color: #e91e63;
+            font-size: clamp(26px, 7vw, 36px);
+            margin-bottom: 20px;
+        }
+
+        #resultado img {
+            display: block;
+            width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .mensaje {
+            color: #777;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .contenedor {
+                padding: 25px 15px;
+            }
+
+            button {
+                width: 105px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PREGUNTA -->
+    <div class="contenedor" id="pregunta">
+
+        <div class="emoji">🤔</div>
+
+        <h1>¿Eres gay? 🏳️‍🌈</h1>
+
+        <div class="botones">
+
+            <button id="si" onclick="aceptar()">
+                SÍ ❤️
+            </button>
+
+            <button id="no">
+                NO ❌
+            </button>
+
+        </div>
+
+        <p class="mensaje">
+            Responde con sinceridad... 👀
+        </p>
+
+    </div>
+
+
+    <!-- RESULTADO -->
+    <div class="contenedor" id="resultado">
+
+        <h1>JAJAJAJAJAJ QUE GAY 😂</h1>
+
+        <img src="sí mi cielo.jpg"
+             alt="Sí mi cielo">
+
+        <p class="mensaje">
+            Sabía que dirías que sí JAJAJA 😂
+        </p>
+
+    </div>
+
+
+    <script>
+
+        const botonNo = document.getElementById("no");
+
+        function escapar() {
+
+            const ancho = window.innerWidth;
+            const alto = window.innerHeight;
+
+            const maxX = ancho - botonNo.offsetWidth - 10;
+            const maxY = alto - botonNo.offsetHeight - 10;
+
+            const x = Math.random() * Math.max(0, maxX);
+            const y = Math.random() * Math.max(0, maxY);
+
+            botonNo.style.position = "fixed";
+            botonNo.style.left = x + "px";
+            botonNo.style.top = y + "px";
+            botonNo.style.zIndex = "1000";
+
+        }
+
+        // Para computadoras
+        botonNo.addEventListener("mouseenter", escapar);
+
+        // Para teléfonos
+        botonNo.addEventListener("touchstart", function(event) {
+            event.preventDefault();
+            escapar();
+        }, { passive: false });
+
+        // Si logra presionarlo igualmente
+        botonNo.addEventListener("click", escapar);
+
+
+        function aceptar() {
+
+            document.getElementById("pregunta").style.display = "none";
+
+            document.getElementById("resultado").style.display = "block";
+
+        }
+
+    </script>
+
+</body>
+</html>
